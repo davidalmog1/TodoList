@@ -1,0 +1,6 @@
+SQLAlchemy  # for db interaction
+alembic     # for our db creation
+fastapi     # for our API server
+Jinja2      # for templating HTML
+uvicorn     # for api server
+pydentic    # for api server
