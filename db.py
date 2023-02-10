@@ -1,31 +1,24 @@
-"""
-Setup db and init session and general functions to interact with db
-"""
-
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import session, sessionmaker
 
-
-SQLALCHEMY_DATABASE_URI = "sqlite:///.todo_app.db"
-
+SQLALCHEMY_DATABASE_URI = "sqlite:///./todo_app.db"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URI,
-    connect_args={"check_same_thread": False}   # sqllit does not allow multiple request by default
+    connect_args={"check_same_thread": False}
 )
 
 SessionLocal = sessionmaker(
-    autoflush=False,
     autocommit=False,
+    autoflush=False,
     bind=engine
 )
 
-# create our DB modle
 Base = declarative_base()
 
-class DBContext():
-    def __init__(self) -> None:
+class DBContext:
+    def __init__(self):
         self.db = SessionLocal()
 
     def __enter__(self):
